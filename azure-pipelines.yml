@@ -1,0 +1,88 @@
+
+trigger: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - ${{ if eq(variables['Build.SourceBranchName'], 'dev') }}:
+    - name: environment
+      value: dev
+
+  - ${{ if eq(variables['Build.SourceBranchName'], 'uat') }}:
+    - name: environment
+      value: uat
+  
+  - ${{ if eq(variables['Build.SourceBranchName'], 'master') }}:
+    - name: environment
+      value: prod
+
+  - name: inputConfiguration
+    value: deploy-config-eb
+
+  - group: ${{ variables.environment }}-${{ variables['Build.Repository.Name'] }}
+  - group: ${{ variables.environment }}-configuration-eb
+
+
+
+resources:
+  repositories:
+    - repository: templates
+      ref: 'refs/heads/master'
+      type: git
+      name: prueba-tecnica/templates-pipelines
+
+    - repository: configurationEb
+      ref: 'refs/heads/master'
+      type: git
+      name: prueba-tecnica/deploy-config-eb
+
+
+stages:
+  - stage: 'Build'
+    displayName: '${{ variables.environment }} - Build'
+    jobs:
+      - template: build/template-build-image.yml@templates
+        parameters:
+          awsAccountId: $(awsAccountId)
+          awsRegion: $(awsRegion)
+          dockerfileRoute: '$(Build.SourcesDirectory)/Dockerfile'
+          awsCredentials: $(awsServiceConnection)
+          envVariables: '${{ variables.environmentVariables }}'
+
+
+  - stage: 'Deployment'
+    displayName: '${{ variables.environment }} - Deployment'  
+    jobs:
+      - template: deploy/template-deploy-eb.yml@templates
+        parameters:
+          applicationName: $(applicationName)
+          ascEC2KeyName: $(deploy_opts_eb_ascEC2KeyName)
+          ascIamInstanceProfile: $(deploy_opts_eb_ascIamInstanceProfile)
+          ascImageId: '$(deploy_opts_eb_ascImageId)'
+          ascInstanceTypes: $(deploy_opts_eb_ascInstanceTypes)
+          ascLoadBalancerType: $(deploy_opts_eb_ascLoadBalancerType)
+          ascLowerThreshold: $(deploy_opts_eb_ascLowerThreshold)
+          ascMaxSize: $(deploy_opts_eb_ascMaxSize)
+          ascMetric: $(deploy_opts_eb_ascMetric)
+          ascMinSize: $(deploy_opts_eb_ascMinSize)
+          ascUnit: $(deploy_opts_eb_ascUnit)
+          ascUpperThreshold: $(deploy_opts_eb_ascUpperThreshold)
+          awsAccountId: $(awsAccountId)
+          awsCredentials: '$(awsServiceConnection)'
+          awsRegion: '$(awsRegion)'
+          bucketName: '$(bucketName)'
+          containerPort: $(eb_containerPort)
+          deploymentsRoute: ''
+          dockerrunRoute: ''
+          ebsHealthCheckUrl: '$(deploy_opts_eb_ebsHealthCheckUrl)'
+          ebsSecurityGroups: '$(deploy_opts_eb_ebsSecurityGroups)'
+          ebsSystemType: $(deploy_opts_eb_ebsSystemType)
+          ec2ELBSubnets: $(deploy_opts_eb_ec2ELBSubnets)
+          ec2Subnets: $(deploy_opts_eb_ec2Subnets)
+          ec2VPCId: $(deploy_opts_eb_ec2VPCId)
+          environment: '${{ variables.environment }}'
+          environmentName: $(environmentName)
+          hostPort: $(deploy_opts_eb_hostPort)
+          inputConfiguration: '${{ variables.inputConfiguration }}'
+          solutionStackName: '$(deploy_opts_eb_solutionStackName)'
