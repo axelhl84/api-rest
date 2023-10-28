@@ -1,0 +1,14 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "#{DOCKER_REPOSITORY}#:#{IMAGE_TAG}#",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "#{CONTAINER_PORT}#",
+      "HostPort": "#{HOST_PORT}#",
+      "Protocol": "tcp"
+    }
+  ]
+}

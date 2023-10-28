@@ -1,0 +1,133 @@
+[
+    {
+        "Namespace": "aws:elasticbeanstalk:environment",
+        "OptionName": "EnvironmentType",
+        "Value": "#{ASC_ENVIRONMENTTYPE}#"
+    },
+    {
+        "Namespace": "aws:elasticbeanstalk:environment",
+        "OptionName": "LoadBalancerType",
+        "Value": "#{ASC_LOADBALANCERTYPE}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:launchconfiguration",
+        "OptionName": "IamInstanceProfile",
+        "Value": "#{ASC_IAMINSTANCEPROFILE}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:launchconfiguration",
+        "OptionName": "EC2KeyName",
+        "Value": "#{ASC_EC2KEYNAME}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:launchconfiguration",
+        "OptionName": "ImageId",
+        "Value": "#{ASC_IMAGEID}#"
+    },
+    {
+        "Namespace": "aws:ec2:instances",
+        "OptionName": "InstanceTypes",
+        "Value": "#{ASC_INSTANCETYPES}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:asg",
+        "OptionName": "MinSize",
+        "Value": "#{ASC_MINSIZE}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:asg",
+        "OptionName": "MaxSize",
+        "Value": "#{ASC_MAXSIZE}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:asg",
+        "OptionName": "Cooldown",
+        "Value": "#{ASC_COOLDOWN}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "MeasureName",
+        "Value": "#{ASC_METRIC}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "Statistic",
+        "Value": "#{ASC_STATISTIC}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "Unit",
+        "Value": "#{ASC_UNIT}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "Period",
+        "Value": "#{ASC_PERIOD}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "BreachDuration",
+        "Value": "#{ASC_BREACHDURATION}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "UpperThreshold",
+        "Value": "#{ASC_UPPERTHRESHOLD}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "UpperBreachScaleIncrement",
+        "Value": "#{ASC_SCALEUPINCREMENT}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "LowerThreshold",
+        "Value": "#{ASC_LOWERTHRESHOLD}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:trigger",
+        "OptionName": "LowerBreachScaleIncrement",
+        "Value": "#{ASC_SCALEDOWNINCREMENT}#"
+    },
+
+    {
+        "Namespace": "aws:ec2:vpc",
+        "OptionName": "VPCId",
+        "Value": "#{EC2_VPCID}#"
+    },
+    {
+        "Namespace": "aws:ec2:vpc",
+        "OptionName": "Subnets",
+        "Value": "#{EC2_SUBNETS}#"
+    },
+    {
+        "Namespace": "aws:ec2:vpc",
+        "OptionName": "ELBSubnets",
+        "Value": "#{EC2_ELBSUBNETS}#"
+    },
+    {
+        "Namespace": "aws:ec2:vpc",
+        "OptionName": "AssociatePublicIpAddress",
+        "Value": "#{EC2_ASSOCIATEPUBLICIPADDRESS}#"
+    },
+    {
+        "Namespace": "aws:ec2:vpc",
+        "OptionName": "ELBScheme",
+        "Value": "#{EC2_SCHEME}#"
+    },
+    {
+        "Namespace": "aws:elasticbeanstalk:healthreporting:system",
+        "OptionName": "SystemType",
+        "Value": "#{EBS_SYSTEMTYPE}#"
+    },
+    {
+        "Namespace": "aws:elasticbeanstalk:environment:process:default",
+        "OptionName": "HealthCheckPath",
+        "Value": "#{EBS_HEALTHCHECKURL}#"
+    },
+    {
+        "Namespace": "aws:autoscaling:launchconfiguration",
+        "OptionName": "SecurityGroups",
+        "Value": "#{EBS_SECURITYGROUPS}#"
+    }  
+]
